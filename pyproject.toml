@@ -1,0 +1,21 @@
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+# Какие проверки включить
+select = ["E", "F", "I"]
+
+# E, F — стандартные ошибки Flake8
+# I — автоматическая сортировка импортов
+
+# Что исключить
+exclude = [
+    ".venv",
+    "venv",
+    "__pycache__"
+]
+
+[tool.ruff.format]
+quote-style = "single"    # использовать одинарные кавычки
+indent-style = "space"    # пробелы, не табы
+line-ending = "lf"
