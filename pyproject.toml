@@ -1,21 +1,51 @@
 [tool.ruff]
+# Максимальная длина строки
 line-length = 88
+
+# Целевая версия Python
 target-version = "py311"
 
 # Какие проверки включить
-select = ["E", "F", "I"]
-
-# E, F — стандартные ошибки Flake8
-# I — автоматическая сортировка импортов
-
-# Что исключить
-exclude = [
-    ".venv",
-    "venv",
-    "__pycache__"
+select = [
+    "E",   # Ошибки стиля (PEP8)
+    "F",   # Ошибки логики (flake8)
+    "I",   # Сортировка импортов (isort)
+    "B",   # Ошибки безопасности и баги (flake8-bugbear)
+    "UP",  # Советы по обновлению кода под современные версии Python
 ]
 
+# Что игнорировать
+ignore = [
+    "E501",  # длина строки — игнорируем, т.к. formatter всё выровняет сам
+]
+
+# Какие файлы/папки исключить
+exclude = [
+    ".git",
+    ".env",
+    "venv",
+    ".venv",
+    "__pycache__",
+    ".mypy_cache",
+]
+
+# Enable fix for auto-correctable rules
+fix = true
+
 [tool.ruff.format]
-quote-style = "single"    # использовать одинарные кавычки
-indent-style = "space"    # пробелы, не табы
+# Использовать стиль Black (совместимый)
+quote-style = "single"
+indent-style = "space"
 line-ending = "lf"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint.isort]
+# Настройки сортировки импортов
+combine-as-imports = true
+force-single-line = false
+lines-after-imports = 2
+
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008"]
